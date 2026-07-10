@@ -128,13 +128,13 @@ Notification configured:
 
 Netlify Forms can receive file uploads, but large plan sets may be too big for normal form upload limits. The form currently asks users to upload files, and the notes field tells them that large files may be easier to share with a Drive or Dropbox link.
 
-Netlify Forms has an 8 MB maximum request size. The public form enforces a 7 MB direct-upload safety limit so form metadata stays under the Netlify cap. Large plan sets should be uploaded to Google Drive, Dropbox, OneDrive, or a plan room, then submitted through the `document_link` field.
+Netlify Forms has an 8 MB maximum request size. The public form enforces a 7 MB direct-upload safety limit so form metadata stays under the Netlify cap. Large plan sets should be uploaded to Google Drive, Dropbox, OneDrive, Procore, PlanGrid, BuildingConnected, or a plan room, then submitted through the `document_link` field.
 
 Recommended next improvement:
 
 - A dedicated field named `document_link` was added.
 - Label: `Large Plan Set Link`
-- Purpose: capture Google Drive, Dropbox, OneDrive, or plan room links when plan sets are too large for direct upload.
+- Purpose: capture a folder or file location where HardBid can access the plans when plan sets are too large for direct upload.
 - The intake page now accepts either an uploaded file or a `document_link`.
 - Browser validation blocks submission only when both the upload field and large-plan link are empty.
 - Browser validation also blocks direct file uploads over 7 MB to avoid Netlify HTTP 400 responses.
