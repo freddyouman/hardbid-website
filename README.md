@@ -1,6 +1,6 @@
 # HardBid Consulting Website
 
-Static one-page website for HardBid Consulting.
+Static website for HardBid Consulting, deployed through GitHub and Netlify.
 
 ## Files
 
@@ -23,13 +23,19 @@ Then open:
 http://127.0.0.1:4173/
 ```
 
-## Squarespace Transfer
+## Live Deployment
 
-Recommended path:
+- Live domain: https://hardbidconsulting.com
+- Netlify site: https://bucolic-klepon-40d5dc.netlify.app
+- GitHub repo: https://github.com/freddyouman/hardbid-website
+- Production branch: `main`
 
-1. Rebuild the page sections inside Squarespace so the site stays editable.
-2. Upload the images from `assets/`.
-3. Use the copy and layout from `index.html` as the source reference.
-4. Add custom CSS only for final brand polish.
+Netlify auto-publishes every push to `main`. Keep this folder as the working copy and GitHub as the version-history copy.
 
-Keep GitHub as the backup/version-history copy and Squarespace as the live site.
+## Admin Notes
+
+- Squarespace is currently the domain/DNS registrar only.
+- Google Workspace email records must stay in DNS.
+- Netlify Forms handles `plan-upload` submissions.
+- Netlify email notifications send new form submissions to `freddyouman@gmail.com`.
+- See `DEPLOYMENT_RUNBOOK.md` for the full setup, DNS records, form workflow, and next automation steps.
