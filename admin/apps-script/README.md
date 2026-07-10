@@ -14,6 +14,22 @@ Live tracker:
 
 https://docs.google.com/spreadsheets/d/1IzThC7hQh4YnoBK16lFeFrwHq9lHZ6CvEo2rg5YHFCw
 
+## Installed Status
+
+Installed on July 10, 2026 under `freddy@hardbidconsulting.com`.
+
+Apps Script project:
+
+https://script.google.com/u/1/home/projects/1NvI4wWchviR88N700myssTavcotWpDt1V9PJtFY2t_a1g9rsZ7qBGSYf/edit
+
+Verified setup:
+
+- Project name: `HardBid Netlify Lead Logger`
+- Trigger: time-based, running `processHardBidNetlifyEmails`
+- Frequency: every 5 minutes
+- First successful manual run: `HardBid leads added: 2`
+- Sheet access fix: shared the tracker with `freddy@hardbidconsulting.com` as editor
+
 ## Setup
 
 1. Open the business account: `freddy@hardbidconsulting.com`.
