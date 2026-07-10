@@ -175,6 +175,15 @@ Use Google Workspace later for:
 
 Do not move website hosting into Google Workspace. Keep hosting on Netlify unless there is a strong reason to change.
 
+Current Google Workspace user setup:
+
+- Paid/admin user: `freddy@hardbidconsulting.com`
+- Alias: `info@hardbidconsulting.com`
+- Alias: `plans@hardbidconsulting.com`
+- Alias: `admin@hardbidconsulting.com`
+
+These aliases were added under the existing `freddy@hardbidconsulting.com` user in Google Admin Console, so they should not create extra paid seats. Test aliases before routing production notifications to them.
+
 ## Current Pages
 
 - `index.html`: main marketing site
