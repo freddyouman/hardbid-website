@@ -7,6 +7,8 @@ Static website for HardBid Consulting, deployed through GitHub and Netlify.
 - `index.html` - full website HTML, CSS, and JavaScript
 - `upload-plans.html` - branded Netlify lead capture and plan upload form
 - `thank-you.html` - confirmation page after a plan upload form submission
+- `privacy.html` - compact public privacy policy
+- `terms.html` - compact public website terms
 - `assets/` - logo, founder photo, and background images
 
 ## Local Preview
@@ -37,5 +39,7 @@ Netlify auto-publishes every push to `main`. Keep this folder as the working cop
 - Squarespace is currently the domain/DNS registrar only.
 - Google Workspace email records must stay in DNS.
 - Netlify Forms handles `plan-upload` submissions.
-- Netlify email notifications send new form submissions to `freddyouman@gmail.com`.
+- Netlify email notifications send new form submissions to `plans@hardbidconsulting.com`.
+- Business Gmail shortcut: `admin/shortcuts/HardBid Business Gmail.url`
+- Google Apps Script automation draft: `admin/apps-script/netlify-email-to-lead-tracker.gs`
 - See `DEPLOYMENT_RUNBOOK.md` for the full setup, DNS records, form workflow, and next automation steps.

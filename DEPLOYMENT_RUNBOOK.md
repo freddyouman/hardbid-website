@@ -163,7 +163,7 @@ Current first-stage funnel:
 Recommended second-stage funnel:
 
 1. Keep Netlify Forms as intake.
-2. Connect submissions to a spreadsheet or CRM after real leads start arriving.
+2. Use Google Apps Script to read Netlify notification emails and append rows to the Lead Tracker.
 3. Prefer simple Google Sheets or HubSpot Free before paying for complex funnel tools.
 4. Use Zapier or Make only after the manual process is proven.
 
@@ -171,6 +171,9 @@ Admin templates:
 
 - `admin/lead-tracker-template.csv`
 - `admin/lead-workflow.md`
+- `admin/apps-script/netlify-email-to-lead-tracker.gs`
+- `admin/business-email-shortcuts.md`
+- `admin/compliance-toolkit/`
 - Live Google Sheet: `https://docs.google.com/spreadsheets/d/1IzThC7hQh4YnoBK16lFeFrwHq9lHZ6CvEo2rg5YHFCw`
 
 ## Google Workspace Guidance
@@ -202,6 +205,8 @@ If the Google Workspace user cannot sign in or the Terms of Service flow sends t
 - `index.html`: main marketing site
 - `upload-plans.html`: lead capture and plan upload page
 - `thank-you.html`: confirmation page
+- `privacy.html`: public privacy policy
+- `terms.html`: public website terms
 - `assets/`: logo, title image, background images, founder photo
 
 ## Design Notes

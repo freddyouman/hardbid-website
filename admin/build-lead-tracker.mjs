@@ -30,10 +30,11 @@ const headers = [
   "Next Action Due",
   "Assigned To",
   "Notes",
+  "Source Message ID",
 ];
 
-leads.getRange("A1:R1").values = [headers];
-leads.getRange("A2:R2").values = [[
+leads.getRange("A1:S1").values = [headers];
+leads.getRange("A2:S2").values = [[
   new Date("2026-07-10T00:00:00"),
   "New",
   "High",
@@ -52,14 +53,15 @@ leads.getRange("A2:R2").values = [[
   new Date("2026-07-11T00:00:00"),
   "Freddy",
   "Example row only. Delete before using for live leads.",
+  "example-message-id",
 ]];
 
-leads.getRange("A1:R1").format = {
+leads.getRange("A1:S1").format = {
   fill: "#E5E7EB",
   font: { bold: true, color: "#111827" },
   wrapText: true,
 };
-leads.getRange("A1:R101").format.borders = {
+leads.getRange("A1:S101").format.borders = {
   insideHorizontal: { style: "thin", color: "#E5E7EB" },
   top: { style: "thin", color: "#D1D5DB" },
   bottom: { style: "thin", color: "#D1D5DB" },
@@ -67,11 +69,11 @@ leads.getRange("A1:R101").format.borders = {
 leads.getRange("A2:A101").setNumberFormat("yyyy-mm-dd");
 leads.getRange("J2:J101").setNumberFormat("yyyy-mm-dd");
 leads.getRange("P2:P101").setNumberFormat("yyyy-mm-dd");
-leads.getRange("A:R").format.wrapText = true;
-leads.getRange("A:R").format.autofitColumns();
-leads.getRange("A1:R1").format.rowHeightPx = 42;
+leads.getRange("A:S").format.wrapText = true;
+leads.getRange("A:S").format.autofitColumns();
+leads.getRange("A1:S1").format.rowHeightPx = 42;
 leads.freezePanes.freezeRows(1);
-leads.tables.add("A1:R101", true, "HardBidLeads");
+leads.tables.add("A1:S101", true, "HardBidLeads");
 
 const listData = [
   ["Lead Status", "Priority", "Project Type", "Needed Support"],

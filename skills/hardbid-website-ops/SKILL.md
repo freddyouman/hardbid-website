@@ -37,3 +37,5 @@ Do not store passwords, temporary passwords, recovery codes, payment details, or
 
 - For Google Workspace email setup, aliases, invitation resend, and missing invite troubleshooting, read `references/google-workspace-email.md`.
 - For deployment, DNS, Netlify Forms, and lead notification routing, read `DEPLOYMENT_RUNBOOK.md`.
+- For lead tracker automation, read `admin/apps-script/README.md` and `admin/lead-workflow.md`.
+- For privacy, terms, consent, and intake-risk notes, read `admin/compliance-toolkit/`.

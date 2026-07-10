@@ -55,12 +55,17 @@ Use these `lead_status` values:
 
 ## Automation Rule
 
-Do not pay for a CRM or funnel tool until the manual workflow has handled real leads. Once there are repeated submissions, connect Netlify Forms to a Google Sheet or CRM and keep `plans@hardbidconsulting.com` as the notification address.
+Do not pay for a CRM or funnel tool until the manual workflow has handled real leads. The first automation path is Google Apps Script reading Netlify notification emails from Gmail and appending rows to the live Google Sheet.
 
-Good second-stage automation:
+Saved automation draft:
 
-1. New Netlify form submission.
-2. Add row to Google Sheet.
-3. Send email notification to `plans@hardbidconsulting.com`.
-4. Optional: create a follow-up calendar reminder.
-5. Optional: add lead to a CRM after the sales process is proven.
+`admin/apps-script/netlify-email-to-lead-tracker.gs`
+
+Good first-stage automation:
+
+1. New Netlify form notification arrives at `plans@hardbidconsulting.com`.
+2. Google Apps Script finds unlogged Netlify emails.
+3. Script appends the intake to the HardBid Lead Tracker.
+4. Script stores the Gmail message ID in hidden column `S` to prevent duplicates.
+5. Optional later: create a follow-up calendar reminder.
+6. Optional later: add a CRM only after the sales process is proven.
