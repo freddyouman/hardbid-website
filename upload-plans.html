@@ -46,7 +46,7 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1180px;margin:0 auto;paddin
       <form class="form" name="plan-upload" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" enctype="multipart/form-data" action="/thank-you.html">
         <input type="hidden" name="form-name" value="plan-upload" />
         <p class="hidden"><label>Do not fill this out: <input name="bot-field" /></label></p>
-        <p class="form-error full" id="document-error">Please upload a file or paste a large plan set link before submitting.</p>
+        <p class="form-error full" id="document-error">Please upload one file under 7 MB or paste a large plan set link before submitting.</p>
         <div class="row">
           <div class="field"><label for="name">Name <span class="required">*</span></label><input id="name" name="name" type="text" autocomplete="name" required placeholder="Your name" /></div>
           <div class="field"><label for="email">Email <span class="required">*</span></label><input id="email" name="email" type="email" autocomplete="email" required placeholder="you@company.com" /></div>
@@ -63,8 +63,8 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1180px;margin:0 auto;paddin
           <div class="field"><label for="project-size">Project Size</label><select id="project-size" name="project_size"><option value="">Select one</option><option>Under $5M</option><option>$5M - $25M</option><option>$25M - $100M</option><option>Over $100M</option><option>Not sure yet</option></select></div>
           <div class="field"><label for="service">Needed Support</label><select id="service" name="needed_support"><option value="">Select one</option><option>Bid package review</option><option>Take-off summary</option><option>Scope gap analysis</option><option>Estimating support</option><option>RFI / clarification support</option><option>Not sure yet</option></select></div>
         </div>
-        <div class="field full"><label for="document-link">Large Plan Set Link</label><input id="document-link" name="document_link" type="url" placeholder="Google Drive, Dropbox, OneDrive, or plan room link" /><p class="fine">Use this if the plan set is too large to upload directly.</p></div>
-        <div class="field full"><label for="documents">Upload Plans / Specs / Notes</label><input id="documents" name="documents" type="file" multiple accept=".pdf,.zip,.dwg,.dxf,.xlsx,.xls,.csv,.doc,.docx,.png,.jpg,.jpeg" /><p class="fine">PDF or ZIP is usually best for plan sets. Submit either an upload or a large-plan link.</p></div>
+        <div class="field full"><label for="document-link">Large Plan Set Link</label><input id="document-link" name="document_link" type="url" placeholder="Google Drive, Dropbox, OneDrive, or plan room link" /><p class="fine">Use this for full plan sets, large PDFs, ZIP files, or anything over 7 MB.</p></div>
+        <div class="field full"><label for="documents">Upload Plans / Specs / Notes</label><input id="documents" name="documents" type="file" accept=".pdf,.zip,.dwg,.dxf,.xlsx,.xls,.csv,.doc,.docx,.png,.jpg,.jpeg" /><p class="fine">Direct upload is for one small file under 7 MB. For full plan sets, paste a share link above.</p></div>
         <div class="field full"><label for="message">Project Notes</label><textarea id="message" name="message" placeholder="Tell us the deadline, scope, trade, concerns, alternates, addenda, or what you want reviewed first."></textarea></div>
         <label class="check full"><input type="checkbox" name="authorized_consent" required /><span>I confirm I am authorized to share these documents and agree to the <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a> and <a href="terms.html" target="_blank" rel="noopener">Terms</a>.</span></label>
         <button class="submit full" type="submit">Submit Plans for Review</button>
@@ -78,6 +78,29 @@ const form = document.querySelector('form[name="plan-upload"]');
 const documentLink = document.getElementById('document-link');
 const documents = document.getElementById('documents');
 const documentError = document.getElementById('document-error');
+const maxDirectUploadBytes = 7 * 1024 * 1024;
+
+function showDocumentError(message) {
+  documentError.textContent = message;
+  documentError.classList.add('show');
+  documentError.scrollIntoView({ block: 'center', behavior: 'smooth' });
+}
+
+documents.addEventListener('change', () => {
+  const file = documents.files[0];
+  if (!file) {
+    documentError.classList.remove('show');
+    return;
+  }
+
+  if (file.size > maxDirectUploadBytes) {
+    const sizeMb = (file.size / 1024 / 1024).toFixed(1);
+    documents.value = '';
+    showDocumentError(`That file is ${sizeMb} MB. Direct upload is limited to 7 MB. Please upload it to Google Drive, Dropbox, OneDrive, or a plan room, then paste the share link above.`);
+  } else {
+    documentError.classList.remove('show');
+  }
+});
 
 form.addEventListener('submit', (event) => {
   const hasLink = documentLink.value.trim().length > 0;
@@ -85,8 +108,15 @@ form.addEventListener('submit', (event) => {
 
   if (!hasLink && !hasFile) {
     event.preventDefault();
-    documentError.classList.add('show');
-    documentError.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    showDocumentError('Please upload one file under 7 MB or paste a large plan set link before submitting.');
+    documentLink.focus();
+    return;
+  }
+
+  if (hasFile && documents.files[0].size > maxDirectUploadBytes) {
+    event.preventDefault();
+    showDocumentError('This file is too large for direct upload. Please paste a Google Drive, Dropbox, OneDrive, or plan room link instead.');
+    documents.value = '';
     documentLink.focus();
     return;
   }
