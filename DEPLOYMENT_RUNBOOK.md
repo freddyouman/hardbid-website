@@ -119,8 +119,8 @@ Netlify status confirmed:
 Notification configured:
 
 - Event: new form submission
-- Email: `freddyouman@gmail.com`
-- Subject: `New HardBid plan upload from {{name}}`
+- Email: `plans@hardbidconsulting.com`
+- Subject: `New HardBid plan upload received`
 - Applies to: any form
 
 ## File Upload Notes
@@ -144,6 +144,10 @@ July 9, 2026:
 - Gmail received a Netlify notification at `freddyouman@gmail.com`.
 - The email body included the test lead fields and a hosted Netlify upload link.
 - Netlify did not replace `{{name}}` in the notification subject, so use a static notification subject such as `New HardBid plan upload received`.
+- Added Google Workspace aliases under the paid/admin user `freddy@hardbidconsulting.com`: `info@hardbidconsulting.com`, `plans@hardbidconsulting.com`, and `admin@hardbidconsulting.com`.
+- Sent an alias test email to `plans@hardbidconsulting.com`; no immediate delivery failure appeared in the sender mailbox.
+- Updated the Netlify form submission notification recipient from `freddyouman@gmail.com` to `plans@hardbidconsulting.com`.
+- Submitted a live link-only routing test through Netlify Forms; the request returned the `Plans Received` page.
 
 ## Lead Workflow
 
@@ -152,7 +156,7 @@ Current first-stage funnel:
 1. Visitor clicks `Upload Plans for Review`.
 2. Visitor completes `plan-upload`.
 3. Netlify stores the submission.
-4. Netlify emails `freddyouman@gmail.com`.
+4. Netlify emails `plans@hardbidconsulting.com`, which is an alias on the `freddy@hardbidconsulting.com` Google Workspace mailbox.
 5. Business reviews submission and follows up manually.
 
 Recommended second-stage funnel:
@@ -182,7 +186,7 @@ Current Google Workspace user setup:
 - Alias: `plans@hardbidconsulting.com`
 - Alias: `admin@hardbidconsulting.com`
 
-These aliases were added under the existing `freddy@hardbidconsulting.com` user in Google Admin Console, so they should not create extra paid seats. Test aliases before routing production notifications to them.
+These aliases were added under the existing `freddy@hardbidconsulting.com` user in Google Admin Console, so they should not create extra paid seats. `plans@hardbidconsulting.com` is the production notification recipient for plan-upload form submissions.
 
 ## Current Pages
 
