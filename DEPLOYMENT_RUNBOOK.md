@@ -126,9 +126,18 @@ Notification configured:
 
 ## File Upload Notes
 
-Netlify Forms can receive file uploads, but large plan sets may be too big for normal form upload limits. The form currently asks users to upload files, and the notes field tells them that large files may be easier to share with a Drive or Dropbox link.
+Netlify Forms can receive file uploads, but large plan sets may be too big for normal form upload limits. The public intake page now uses Uploadcare as the primary large-file uploader and keeps a direct folder/plan-room link as a fallback.
 
-Netlify Forms has an 8 MB maximum request size. The public form enforces a 7 MB direct-upload safety limit so form metadata stays under the Netlify cap. Large plan sets should be uploaded to Google Drive, Dropbox, OneDrive, Procore, PlanGrid, BuildingConnected, or a plan room, then submitted through the `document_link` field.
+Current Uploadcare setup:
+
+- Uploadcare workspace: Pro trial, 14 days left as of July 10, 2026.
+- Uploadcare project/public key: `06ed15f29f1df80a6875`
+- This is a public frontend key. Do not store or expose any Uploadcare secret key in this repo.
+- The upload page writes the resulting Uploadcare URL(s) into hidden Netlify field `uploadcare_file_links`.
+- Allowed uploader sources: local file, direct URL, Dropbox, Google Drive, OneDrive, and Box.
+- Browser-side Uploadcare max file size is currently 1 GB to stay within a practical Pro-plan threshold.
+
+Netlify Forms still has an 8 MB maximum request size. The backup direct-upload field enforces a 7 MB limit so form metadata stays under the Netlify cap. Large plan sets should use the Uploadcare widget or a Google Drive, Dropbox, OneDrive, Procore, PlanGrid, BuildingConnected, Box, or plan-room link.
 
 Recommended next improvement:
 

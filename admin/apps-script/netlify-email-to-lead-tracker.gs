@@ -12,6 +12,7 @@ const FIELD_LABELS = [
   'Bid Due Date',
   'Project Size',
   'Needed Support',
+  'Uploadcare File Links',
   'Large Plan Set Link',
   'Upload Plans / Specs / Notes',
   'Project Notes',
@@ -71,6 +72,7 @@ function parseNetlifyBody_(body) {
     bidDueDate: extractField_(body, 'Bid Due Date'),
     projectSize: extractField_(body, 'Project Size'),
     neededSupport: extractField_(body, 'Needed Support'),
+    uploadcareFileLinks: extractField_(body, 'Uploadcare File Links'),
     documentLink: extractField_(body, 'Large Plan Set Link'),
     uploadedFiles: extractField_(body, 'Upload Plans / Specs / Notes'),
     projectNotes: extractField_(body, 'Project Notes'),
@@ -105,7 +107,7 @@ function buildLeadRow_(message, submission, messageId) {
   const receivedAt = message.getDate();
   const bidDueDate = submission.bidDueDate || '';
   const nextActionDue = nextBusinessDay_(receivedAt);
-  const documentLink = submission.documentLink || submission.uploadedFiles || '';
+  const documentLink = submission.uploadcareFileLinks || submission.documentLink || submission.uploadedFiles || '';
 
   return [
     receivedAt,

@@ -10,7 +10,7 @@ https://docs.google.com/spreadsheets/d/1IzThC7hQh4YnoBK16lFeFrwHq9lHZ6CvEo2rg5YH
 
 1. Check `plans@hardbidconsulting.com` for the Netlify notification.
 2. Open the Netlify submission link if the email includes one.
-3. Add the lead to `lead-tracker-template.csv` or a Google Sheet with the same columns.
+3. Confirm the `Document Link` value in the Lead Tracker. It may contain an Uploadcare CDN URL, a folder/plan-room link, or a legacy Netlify small-file upload link.
 4. Mark `lead_status` as `New`.
 5. Set `priority`:
    - `High`: bid due in 7 days or less, large project, or clear urgent ask.
