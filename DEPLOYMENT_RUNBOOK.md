@@ -167,6 +167,11 @@ Recommended second-stage funnel:
 3. Prefer simple Google Sheets or HubSpot Free before paying for complex funnel tools.
 4. Use Zapier or Make only after the manual process is proven.
 
+Admin templates:
+
+- `admin/lead-tracker-template.csv`
+- `admin/lead-workflow.md`
+
 ## Google Workspace Guidance
 
 Google Workspace is useful for professional email, storage, and shared files. It is not required to make the website run.
