@@ -5,6 +5,8 @@ Static one-page website for HardBid Consulting.
 ## Files
 
 - `index.html` - full website HTML, CSS, and JavaScript
+- `upload-plans.html` - branded Netlify lead capture and plan upload form
+- `thank-you.html` - confirmation page after a plan upload form submission
 - `assets/` - logo, founder photo, and background images
 
 ## Local Preview
