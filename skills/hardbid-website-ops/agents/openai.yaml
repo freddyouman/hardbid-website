@@ -1,0 +1,4 @@
+interface:
+  display_name: "HardBid Website Ops"
+  short_description: "Operate and deploy the HardBid website."
+  default_prompt: "Use the HardBid website operations skill to update, verify, deploy, and document the HardBid Consulting website workflow."

@@ -11,6 +11,7 @@ This file records the current working setup so future deployments, DNS changes, 
 - Netlify subdomain: `https://bucolic-klepon-40d5dc.netlify.app`
 - Live domain: `https://hardbidconsulting.com`
 - Backup local copy: `Website/hardbid_homepage_fixed`
+- Project-local Codex skill: `skills/hardbid-website-ops/SKILL.md`
 
 Netlify deploys automatically when changes are pushed to GitHub `main`.
 
@@ -187,6 +188,8 @@ Current Google Workspace user setup:
 - Alias: `admin@hardbidconsulting.com`
 
 These aliases were added under the existing `freddy@hardbidconsulting.com` user in Google Admin Console, so they should not create extra paid seats. `plans@hardbidconsulting.com` is the production notification recipient for plan-upload form submissions.
+
+If the Google Workspace user cannot sign in or the Terms of Service flow sends the browser to the wrong account, resend the invitation from Squarespace Google Workspace management to an accessible mailbox such as `freddyouman@gmail.com`. Use the newest `Welcome to Google Workspace` email to sign in as `freddy@hardbidconsulting.com`, then accept the terms. Do not store temporary passwords in this repo.
 
 ## Current Pages
 
