@@ -183,10 +183,14 @@ Admin templates:
 
 - `admin/lead-tracker-template.csv`
 - `admin/lead-workflow.md`
+- `admin/service-renewal-tracker.md`
+- `admin/service-renewal-tracker.csv`
 - `admin/apps-script/netlify-email-to-lead-tracker.gs`
 - `admin/business-email-shortcuts.md`
 - `admin/compliance-toolkit/`
 - Live Google Sheet: `https://docs.google.com/spreadsheets/d/1IzThC7hQh4YnoBK16lFeFrwHq9lHZ6CvEo2rg5YHFCw`
+
+Service renewals and subscription reminders are tracked in `admin/service-renewal-tracker.md`. Keep this file updated whenever a new service, paid plan, trial, or domain is added.
 
 ## Google Workspace Guidance
 
