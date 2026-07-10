@@ -129,9 +129,19 @@ Netlify Forms can receive file uploads, but large plan sets may be too big for n
 
 Recommended next improvement:
 
-- Add a dedicated field named `document_link`
-- Label it: `Large plan set link`
-- Explain: `For large files, paste a Google Drive, Dropbox, OneDrive, or plan room link here.`
+- A dedicated field named `document_link` was added.
+- Label: `Large Plan Set Link`
+- Purpose: capture Google Drive, Dropbox, OneDrive, or plan room links when plan sets are too large for direct upload.
+
+## Verification Log
+
+July 9, 2026:
+
+- Submitted a live test lead through `https://hardbidconsulting.com/upload-plans`.
+- The customer path returned the `Plans Received` thank-you page.
+- Gmail received a Netlify notification at `freddyouman@gmail.com`.
+- The email body included the test lead fields and a hosted Netlify upload link.
+- Netlify did not replace `{{name}}` in the notification subject, so use a static notification subject such as `New HardBid plan upload received`.
 
 ## Lead Workflow
 
