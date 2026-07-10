@@ -9,7 +9,7 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
 
 [[redirects]]
-  from = "https://www.hardbidconsulting.com/*"
-  to = "https://hardbidconsulting.com/:splat"
+  from = "https://hardbidconsulting.com/*"
+  to = "https://www.hardbidconsulting.com/:splat"
   status = 301
   force = true
