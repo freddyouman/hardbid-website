@@ -132,6 +132,8 @@ Recommended next improvement:
 - A dedicated field named `document_link` was added.
 - Label: `Large Plan Set Link`
 - Purpose: capture Google Drive, Dropbox, OneDrive, or plan room links when plan sets are too large for direct upload.
+- The intake page now accepts either an uploaded file or a `document_link`.
+- Browser validation blocks submission only when both the upload field and large-plan link are empty.
 
 ## Verification Log
 

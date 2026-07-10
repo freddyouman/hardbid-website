@@ -14,7 +14,7 @@
 a{color:inherit;text-decoration:none}.wrap{max-width:1180px;margin:0 auto;padding:26px 24px 56px}.top{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:34px}.brand{display:flex;align-items:center;gap:14px}.brand img{height:54px;width:auto;border-radius:10px}.brand span{font-family:var(--fd);font-weight:700;letter-spacing:1.8px}.brand .g{color:var(--gold)}.back{font-family:var(--fd);font-weight:600;color:var(--ink2);border:1px solid var(--line2);border-radius:10px;padding:10px 16px;background:rgba(5,8,15,.44)}.back:hover{border-color:var(--gold);color:var(--gold)}
 .hero{text-align:center;margin:18px auto 34px;max-width:860px}.hero .lion{height:118px;width:auto;margin:0 auto 10px;display:block;-webkit-mask-image:radial-gradient(ellipse closest-side at center,#000 62%,transparent 96%);mask-image:radial-gradient(ellipse closest-side at center,#000 62%,transparent 96%)}.title-img{width:min(680px,100%);height:auto;display:block;margin:0 auto 12px;filter:drop-shadow(0 6px 24px rgba(0,0,0,.65))}.eyebrow{font-family:var(--fd);font-weight:600;letter-spacing:3px;text-transform:uppercase;font-size:.76rem;color:var(--gold);margin-bottom:10px}.hero h1{font-family:var(--fd);font-size:clamp(2rem,5.2vw,4.2rem);line-height:1.05;margin-bottom:14px}.hero h1 span{color:var(--gold)}.hero p{color:var(--ink2);font-size:1.06rem;max-width:720px;margin:0 auto}
 .grid{display:grid;grid-template-columns:.78fr 1.22fr;gap:24px;align-items:start}.panel{background:var(--panel2);border:1px solid var(--line);border-radius:16px;box-shadow:0 24px 70px rgba(0,0,0,.45)}.steps{padding:26px}.steps h2,.form-card h2{font-family:var(--fd);font-size:1.35rem;margin-bottom:12px}.steps p{color:var(--ink2);font-size:.94rem;margin-bottom:18px}.step{display:flex;gap:12px;padding:14px 0;border-top:1px solid var(--line)}.num{flex:0 0 auto;width:30px;height:30px;border-radius:999px;background:linear-gradient(145deg,var(--gold2),var(--gold));color:#1A1206;display:grid;place-items:center;font-family:var(--fd);font-weight:700}.step b{font-family:var(--fd)}.step small{display:block;color:var(--ink2);font-size:.82rem;margin-top:2px}.legal{margin-top:18px;padding:14px;border:1px solid rgba(231,167,57,.28);border-radius:12px;background:rgba(231,167,57,.08);font-size:.82rem;color:#D8DEEA}
-.form-card{padding:30px}.form-card .intro{color:var(--ink2);margin-bottom:20px}.form{display:grid;gap:16px}.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}.field label{display:block;font-family:var(--fd);font-weight:600;font-size:.88rem;margin-bottom:7px}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line2);border-radius:10px;background:rgba(5,8,15,.64);color:var(--ink);font:inherit;padding:13px 14px}.field input::placeholder,.field textarea::placeholder{color:#69758A}.field textarea{min-height:116px;resize:vertical}.field input[type=file]{padding:12px;background:rgba(5,8,15,.5)}.full{grid-column:1/-1}.hidden{display:none}.submit{border:0;border-radius:10px;background:linear-gradient(145deg,var(--gold2),var(--gold));color:#1A1206;font-family:var(--fd);font-weight:700;font-size:1rem;padding:15px 22px;cursor:pointer;box-shadow:0 10px 30px rgba(231,167,57,.26)}.submit:hover{filter:brightness(1.04)}.fine{color:var(--ink2);font-size:.78rem;margin-top:4px}.required{color:var(--gold)}
+.form-card{padding:30px}.form-card .intro{color:var(--ink2);margin-bottom:20px}.form{display:grid;gap:16px}.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}.field label{display:block;font-family:var(--fd);font-weight:600;font-size:.88rem;margin-bottom:7px}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line2);border-radius:10px;background:rgba(5,8,15,.64);color:var(--ink);font:inherit;padding:13px 14px}.field input::placeholder,.field textarea::placeholder{color:#69758A}.field textarea{min-height:116px;resize:vertical}.field input[type=file]{padding:12px;background:rgba(5,8,15,.5)}.full{grid-column:1/-1}.hidden{display:none}.form-error{display:none;border:1px solid rgba(231,167,57,.42);border-radius:10px;background:rgba(231,167,57,.1);color:#F5D89A;padding:11px 13px;font-size:.88rem}.form-error.show{display:block}.submit{border:0;border-radius:10px;background:linear-gradient(145deg,var(--gold2),var(--gold));color:#1A1206;font-family:var(--fd);font-weight:700;font-size:1rem;padding:15px 22px;cursor:pointer;box-shadow:0 10px 30px rgba(231,167,57,.26)}.submit:hover{filter:brightness(1.04)}.fine{color:var(--ink2);font-size:.78rem;margin-top:4px}.required{color:var(--gold)}
 @media(max-width:880px){.grid{grid-template-columns:1fr}.top{align-items:flex-start}.row{grid-template-columns:1fr}.hero .lion{height:92px}.form-card,.steps{padding:22px}}@media(max-width:560px){.wrap{padding:18px 16px 42px}.top{flex-direction:column}.back{width:100%;text-align:center}.brand img{height:46px}.brand span{font-size:.9rem;letter-spacing:1px}.hero h1{font-size:2.2rem}.hero p{font-size:.98rem}}
 </style>
 </head>
@@ -46,6 +46,7 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1180px;margin:0 auto;paddin
       <form class="form" name="plan-upload" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" enctype="multipart/form-data" action="/thank-you.html">
         <input type="hidden" name="form-name" value="plan-upload" />
         <p class="hidden"><label>Do not fill this out: <input name="bot-field" /></label></p>
+        <p class="form-error full" id="document-error">Please upload a file or paste a large plan set link before submitting.</p>
         <div class="row">
           <div class="field"><label for="name">Name <span class="required">*</span></label><input id="name" name="name" type="text" autocomplete="name" required placeholder="Your name" /></div>
           <div class="field"><label for="email">Email <span class="required">*</span></label><input id="email" name="email" type="email" autocomplete="email" required placeholder="you@company.com" /></div>
@@ -63,7 +64,7 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1180px;margin:0 auto;paddin
           <div class="field"><label for="service">Needed Support</label><select id="service" name="needed_support"><option value="">Select one</option><option>Bid package review</option><option>Take-off summary</option><option>Scope gap analysis</option><option>Estimating support</option><option>RFI / clarification support</option><option>Not sure yet</option></select></div>
         </div>
         <div class="field full"><label for="document-link">Large Plan Set Link</label><input id="document-link" name="document_link" type="url" placeholder="Google Drive, Dropbox, OneDrive, or plan room link" /><p class="fine">Use this if the plan set is too large to upload directly.</p></div>
-        <div class="field full"><label for="documents">Upload Plans / Specs / Notes <span class="required">*</span></label><input id="documents" name="documents" type="file" multiple required accept=".pdf,.zip,.dwg,.dxf,.xlsx,.xls,.csv,.doc,.docx,.png,.jpg,.jpeg" /><p class="fine">PDF or ZIP is usually best for plan sets. For very large files, paste a share link above and upload a small cover note here.</p></div>
+        <div class="field full"><label for="documents">Upload Plans / Specs / Notes</label><input id="documents" name="documents" type="file" multiple accept=".pdf,.zip,.dwg,.dxf,.xlsx,.xls,.csv,.doc,.docx,.png,.jpg,.jpeg" /><p class="fine">PDF or ZIP is usually best for plan sets. Submit either an upload or a large-plan link.</p></div>
         <div class="field full"><label for="message">Project Notes</label><textarea id="message" name="message" placeholder="Tell us the deadline, scope, trade, concerns, alternates, addenda, or what you want reviewed first."></textarea></div>
         <button class="submit full" type="submit">Submit Plans for Review</button>
         <p class="fine full">By submitting, you confirm you are authorized to share these documents. HardBid provides contractor review support only; final bid decisions remain your responsibility.</p>
@@ -71,5 +72,26 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1180px;margin:0 auto;paddin
     </section>
   </section>
 </main>
+<script>
+const form = document.querySelector('form[name="plan-upload"]');
+const documentLink = document.getElementById('document-link');
+const documents = document.getElementById('documents');
+const documentError = document.getElementById('document-error');
+
+form.addEventListener('submit', (event) => {
+  const hasLink = documentLink.value.trim().length > 0;
+  const hasFile = documents.files.length > 0;
+
+  if (!hasLink && !hasFile) {
+    event.preventDefault();
+    documentError.classList.add('show');
+    documentError.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    documentLink.focus();
+    return;
+  }
+
+  documentError.classList.remove('show');
+});
+</script>
 </body>
 </html>
