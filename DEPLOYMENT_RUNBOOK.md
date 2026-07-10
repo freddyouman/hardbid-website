@@ -171,6 +171,7 @@ Admin templates:
 
 - `admin/lead-tracker-template.csv`
 - `admin/lead-workflow.md`
+- Live Google Sheet: `https://docs.google.com/spreadsheets/d/1IzThC7hQh4YnoBK16lFeFrwHq9lHZ6CvEo2rg5YHFCw`
 
 ## Google Workspace Guidance
 

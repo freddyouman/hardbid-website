@@ -2,6 +2,10 @@
 
 Use this workflow for every website inquiry submitted through the `plan-upload` Netlify form.
 
+Live tracker:
+
+https://docs.google.com/spreadsheets/d/1IzThC7hQh4YnoBK16lFeFrwHq9lHZ6CvEo2rg5YHFCw
+
 ## Intake
 
 1. Check `plans@hardbidconsulting.com` for the Netlify notification.
