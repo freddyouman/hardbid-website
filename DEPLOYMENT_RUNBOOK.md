@@ -126,27 +126,17 @@ Notification configured:
 
 ## File Upload Notes
 
-Netlify Forms can receive file uploads, but large plan sets may be too big for normal form upload limits. The public intake page now uses Uploadcare as the primary large-file uploader and keeps a direct folder/plan-room link as a fallback.
+The redesigned first-contact funnel does not depend on Uploadcare and does not require documents. Netlify Forms handles the intake fields and one optional supporting file under 7 MB.
 
-Current Uploadcare setup:
+For large or sensitive plan sets:
 
-- Uploadcare workspace: Pro trial, 14 days left as of July 10, 2026.
-- Uploadcare project/public key: `06ed15f29f1df80a6875`
-- This is a public frontend key. Do not store or expose any Uploadcare secret key in this repo.
-- The upload page writes the resulting Uploadcare URL(s) into hidden Netlify field `uploadcare_file_links`.
-- Allowed uploader sources: local file, direct URL, Dropbox, Google Drive, OneDrive, and Box.
-- Browser-side Uploadcare max file size is currently 1 GB to stay within a practical Pro-plan threshold.
+- Qualify the inquiry before requesting the full set.
+- Prefer the client's authorized plan-room or controlled folder link.
+- Otherwise create a restricted project folder owned by the HardBid business Google Workspace account.
+- Do not use a personal Google Drive as the permanent business archive.
+- Keep the future Azure Blob path reserved for the HardBid platform runtime, with expiring access, quarantine, and malware scanning.
 
-Netlify Forms still has an 8 MB maximum request size. The backup direct-upload field enforces a 7 MB limit so form metadata stays under the Netlify cap. Large plan sets should use the Uploadcare widget or a Google Drive, Dropbox, OneDrive, Procore, PlanGrid, BuildingConnected, Box, or plan-room link.
-
-Recommended next improvement:
-
-- A dedicated field named `document_link` was added.
-- Label: `Large Plan Set Link`
-- Purpose: capture a folder or file location where HardBid can access the plans when plan sets are too large for direct upload.
-- The intake page now accepts either an uploaded file or a `document_link`.
-- Browser validation blocks submission only when both the upload field and large-plan link are empty.
-- Browser validation also blocks direct file uploads over 7 MB to avoid Netlify HTTP 400 responses.
+The former Uploadcare trial ended on July 24, 2026 and downgraded to the Free plan at $0/month with no payment method. The owner deleted the Uploadcare account and its stored files on July 27, 2026. Uploadcare is no longer active and is not a launch dependency.
 
 ## Verification Log
 
@@ -166,11 +156,12 @@ July 9, 2026:
 
 Current first-stage funnel:
 
-1. Visitor clicks `Upload Plans for Review`.
+1. Visitor clicks `Request a Review`.
 2. Visitor completes `plan-upload`.
 3. Netlify stores the submission.
 4. Netlify emails `plans@hardbidconsulting.com`, which is an alias on the `freddy@hardbidconsulting.com` Google Workspace mailbox.
-5. Business reviews submission and follows up manually.
+5. Business reviews the submission and normally follows up within one business day.
+6. If large documents are needed, HardBid provides the restricted transfer instructions after qualification.
 
 Recommended second-stage funnel:
 

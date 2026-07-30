@@ -5,17 +5,40 @@ const SEARCH_QUERY = 'from:formresponses@netlify.com subject:"New HardBid plan u
 
 const FIELD_LABELS = [
   'Name *',
+  'Name',
+  'name',
+  'Business Email *',
+  'Business Email',
   'Email *',
+  'Email',
+  'email',
   'Phone',
   'Company',
+  'Project Name *',
+  'Project Name',
+  'project_name',
+  'Project Type *',
   'Project Type',
+  'project_type',
+  'Bid or Decision Date',
   'Bid Due Date',
+  'bid_due_date',
+  'Approximate Construction Value',
   'Project Size',
+  'project_size',
+  'Support Needed *',
+  'Support Needed',
   'Needed Support',
+  'needed_support',
+  'Authorized Document or Plan-room Link',
+  'document_link',
+  'Small Supporting File',
+  'small_attachment',
   'Uploadcare File Links',
   'Large Plan Set Link',
   'Upload Plans / Specs / Notes',
   'Project Notes',
+  'message',
 ];
 
 function processHardBidNetlifyEmails() {
@@ -64,19 +87,28 @@ function getProcessedMessageIds_(sheet) {
 
 function parseNetlifyBody_(body) {
   return {
-    name: extractField_(body, 'Name *'),
-    email: extractField_(body, 'Email *'),
-    phone: extractField_(body, 'Phone'),
-    company: extractField_(body, 'Company'),
-    projectType: extractField_(body, 'Project Type'),
-    bidDueDate: extractField_(body, 'Bid Due Date'),
-    projectSize: extractField_(body, 'Project Size'),
-    neededSupport: extractField_(body, 'Needed Support'),
+    name: extractAnyField_(body, ['Name *', 'Name', 'name']),
+    email: extractAnyField_(body, ['Business Email *', 'Business Email', 'Email *', 'Email', 'email']),
+    phone: extractAnyField_(body, ['Phone']),
+    company: extractAnyField_(body, ['Company']),
+    projectName: extractAnyField_(body, ['Project Name *', 'Project Name', 'project_name']),
+    projectType: extractAnyField_(body, ['Project Type *', 'Project Type', 'project_type']),
+    bidDueDate: extractAnyField_(body, ['Bid or Decision Date', 'Bid Due Date', 'bid_due_date']),
+    projectSize: extractAnyField_(body, ['Approximate Construction Value', 'Project Size', 'project_size']),
+    neededSupport: extractAnyField_(body, ['Support Needed *', 'Support Needed', 'Needed Support', 'needed_support']),
     uploadcareFileLinks: extractField_(body, 'Uploadcare File Links'),
-    documentLink: extractField_(body, 'Large Plan Set Link'),
-    uploadedFiles: extractField_(body, 'Upload Plans / Specs / Notes'),
-    projectNotes: extractField_(body, 'Project Notes'),
+    documentLink: extractAnyField_(body, ['Authorized Document or Plan-room Link', 'Large Plan Set Link', 'document_link']),
+    uploadedFiles: extractAnyField_(body, ['Small Supporting File', 'Upload Plans / Specs / Notes', 'small_attachment']),
+    projectNotes: extractAnyField_(body, ['Project Notes', 'message']),
   };
+}
+
+function extractAnyField_(body, labels) {
+  for (const label of labels) {
+    const value = extractField_(body, label);
+    if (value) return value;
+  }
+  return '';
 }
 
 function extractField_(body, label) {
@@ -117,7 +149,7 @@ function buildLeadRow_(message, submission, messageId) {
     submission.email,
     submission.phone,
     submission.company,
-    '',
+    submission.projectName,
     submission.projectType,
     bidDueDate,
     submission.projectSize,

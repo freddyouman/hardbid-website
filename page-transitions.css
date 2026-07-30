@@ -1,0 +1,66 @@
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root) {
+  animation: hb-page-out 180ms ease-in both;
+}
+
+::view-transition-new(root) {
+  animation: hb-page-in 340ms cubic-bezier(.2, .7, .2, 1) both;
+}
+
+body {
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+body.hb-page-leaving {
+  opacity: .12;
+  transform: translateY(-5px);
+}
+
+.hb-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 520ms ease, transform 520ms cubic-bezier(.2, .7, .2, 1);
+}
+
+.hb-reveal.hb-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.hb-section-focus {
+  animation: hb-section-focus 620ms ease;
+}
+
+@keyframes hb-page-out {
+  to { opacity: 0; transform: translateY(-5px); }
+}
+
+@keyframes hb-page-in {
+  from { opacity: 0; transform: translateY(8px); }
+}
+
+@keyframes hb-section-focus {
+  0%, 100% { filter: none; }
+  42% { filter: brightness(1.045); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root),
+  .hb-section-focus {
+    animation: none;
+  }
+
+  body,
+  .hb-reveal {
+    transition: none;
+  }
+
+  .hb-reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
