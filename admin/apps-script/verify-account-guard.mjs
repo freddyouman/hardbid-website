@@ -8,6 +8,7 @@ const source = fs.readFileSync(
 );
 
 assert.doesNotMatch(source, /SEARCH_QUERY[^\n]+-label:HardBidLeadLogged/);
+assert.match(source, /if \(!isTargetNetlifyMessage_\(message\)\) return;/);
 
 function loadWithAccount(email) {
   const context = {
@@ -108,4 +109,22 @@ assert.deepEqual(
   },
 );
 
-console.log("Apps Script account/parser/thread guard: 7/7 checks passed.");
+const validMessage = {
+  getFrom: () => "Netlify <formresponses@netlify.com>",
+  getSubject: () => "New HardBid plan upload received",
+};
+const wrongSender = {
+  getFrom: () => "someone@example.com",
+  getSubject: () => "New HardBid plan upload received",
+};
+const wrongSubject = {
+  getFrom: () => "formresponses@netlify.com",
+  getSubject: () => "Re: New HardBid plan upload received",
+};
+const messageGuard = loadWithAccount("freddy@hardbidconsulting.com");
+
+assert.equal(messageGuard.isTargetNetlifyMessage_(validMessage), true);
+assert.equal(messageGuard.isTargetNetlifyMessage_(wrongSender), false);
+assert.equal(messageGuard.isTargetNetlifyMessage_(wrongSubject), false);
+
+console.log("Apps Script account/parser/thread/message guard: 11/11 checks passed.");

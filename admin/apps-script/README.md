@@ -17,6 +17,10 @@ not part of the search exclusion because Gmail groups repeated Netlify
 notification subjects into one thread. The immutable Gmail message ID in the
 Sheet is the deduplication control.
 
+Each message inside a matching thread is independently checked for the exact
+Netlify sender and notification subject. Replies or unrelated messages in the
+same conversation cannot create lead rows.
+
 Live tracker:
 
 https://docs.google.com/spreadsheets/d/1IzThC7hQh4YnoBK16lFeFrwHq9lHZ6CvEo2rg5YHFCw

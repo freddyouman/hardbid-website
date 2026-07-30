@@ -3,6 +3,8 @@ const LEADS_SHEET_NAME = 'Leads';
 const PROCESSED_LABEL = 'HardBidLeadLogged';
 const SEARCH_QUERY = 'from:formresponses@netlify.com subject:"New HardBid plan upload received" newer_than:30d';
 const EXPECTED_EXECUTION_ACCOUNT = 'freddy@hardbidconsulting.com';
+const EXPECTED_SENDER = 'formresponses@netlify.com';
+const EXPECTED_SUBJECT = 'New HardBid plan upload received';
 
 const FIELD_LABELS = [
   'Name *',
@@ -57,6 +59,8 @@ function processHardBidNetlifyEmails() {
 
   threads.forEach((thread) => {
     thread.getMessages().forEach((message) => {
+      if (!isTargetNetlifyMessage_(message)) return;
+
       const messageId = message.getId();
       if (processedIds.has(messageId)) return;
 
@@ -71,6 +75,13 @@ function processHardBidNetlifyEmails() {
   });
 
   Logger.log(`HardBid leads added: ${added}`);
+}
+
+function isTargetNetlifyMessage_(message) {
+  const sender = String(message.getFrom() || '').toLowerCase();
+  const subject = String(message.getSubject() || '').trim();
+
+  return sender.includes(EXPECTED_SENDER) && subject === EXPECTED_SUBJECT;
 }
 
 function installHardBidLeadTrigger() {
