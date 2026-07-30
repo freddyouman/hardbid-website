@@ -12,6 +12,11 @@ This is the no-extra-subscription automation path for HardBid leads.
 6. The script fails visibly unless the effective execution account is
    `freddy@hardbidconsulting.com`.
 
+The processed Gmail label is for operator visibility only. It is deliberately
+not part of the search exclusion because Gmail groups repeated Netlify
+notification subjects into one thread. The immutable Gmail message ID in the
+Sheet is the deduplication control.
+
 Live tracker:
 
 https://docs.google.com/spreadsheets/d/1IzThC7hQh4YnoBK16lFeFrwHq9lHZ6CvEo2rg5YHFCw

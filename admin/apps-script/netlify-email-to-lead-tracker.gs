@@ -1,7 +1,7 @@
 const SPREADSHEET_ID = '1IzThC7hQh4YnoBK16lFeFrwHq9lHZ6CvEo2rg5YHFCw';
 const LEADS_SHEET_NAME = 'Leads';
 const PROCESSED_LABEL = 'HardBidLeadLogged';
-const SEARCH_QUERY = 'from:formresponses@netlify.com subject:"New HardBid plan upload received" newer_than:30d -label:HardBidLeadLogged';
+const SEARCH_QUERY = 'from:formresponses@netlify.com subject:"New HardBid plan upload received" newer_than:30d';
 const EXPECTED_EXECUTION_ACCOUNT = 'freddy@hardbidconsulting.com';
 
 const FIELD_LABELS = [
@@ -32,14 +32,18 @@ const FIELD_LABELS = [
   'Needed Support',
   'needed_support',
   'Authorized Document or Plan-room Link',
+  'Document Link',
   'document_link',
   'Small Supporting File',
+  'Small Attachment',
   'small_attachment',
   'Uploadcare File Links',
   'Large Plan Set Link',
   'Upload Plans / Specs / Notes',
   'Project Notes',
+  'Message',
   'message',
+  'Authorized To Share',
 ];
 
 function processHardBidNetlifyEmails() {
@@ -116,9 +120,9 @@ function parseNetlifyBody_(body) {
     projectSize: extractAnyField_(body, ['Approximate Construction Value', 'Project Size', 'project_size']),
     neededSupport: extractAnyField_(body, ['Support Needed *', 'Support Needed', 'Needed Support', 'needed_support']),
     uploadcareFileLinks: extractField_(body, 'Uploadcare File Links'),
-    documentLink: extractAnyField_(body, ['Authorized Document or Plan-room Link', 'Large Plan Set Link', 'document_link']),
-    uploadedFiles: extractAnyField_(body, ['Small Supporting File', 'Upload Plans / Specs / Notes', 'small_attachment']),
-    projectNotes: extractAnyField_(body, ['Project Notes', 'message']),
+    documentLink: extractAnyField_(body, ['Authorized Document or Plan-room Link', 'Document Link', 'Large Plan Set Link', 'document_link']),
+    uploadedFiles: extractAnyField_(body, ['Small Supporting File', 'Small Attachment', 'Upload Plans / Specs / Notes', 'small_attachment']),
+    projectNotes: extractAnyField_(body, ['Project Notes', 'Message', 'message']),
   };
 }
 
