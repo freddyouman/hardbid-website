@@ -2,6 +2,7 @@ const SPREADSHEET_ID = '1IzThC7hQh4YnoBK16lFeFrwHq9lHZ6CvEo2rg5YHFCw';
 const LEADS_SHEET_NAME = 'Leads';
 const PROCESSED_LABEL = 'HardBidLeadLogged';
 const SEARCH_QUERY = 'from:formresponses@netlify.com subject:"New HardBid plan upload received" newer_than:30d -label:HardBidLeadLogged';
+const EXPECTED_EXECUTION_ACCOUNT = 'freddy@hardbidconsulting.com';
 
 const FIELD_LABELS = [
   'Name *',
@@ -42,6 +43,8 @@ const FIELD_LABELS = [
 ];
 
 function processHardBidNetlifyEmails() {
+  assertHardBidBusinessAccount_();
+
   const sheet = SpreadsheetApp.openById(SPREADSHEET_ID).getSheetByName(LEADS_SHEET_NAME);
   const processedIds = getProcessedMessageIds_(sheet);
   const label = GmailApp.getUserLabelByName(PROCESSED_LABEL) || GmailApp.createLabel(PROCESSED_LABEL);
@@ -67,6 +70,8 @@ function processHardBidNetlifyEmails() {
 }
 
 function installHardBidLeadTrigger() {
+  assertHardBidBusinessAccount_();
+
   ScriptApp.getProjectTriggers()
     .filter((trigger) => trigger.getHandlerFunction() === 'processHardBidNetlifyEmails')
     .forEach((trigger) => ScriptApp.deleteTrigger(trigger));
@@ -75,6 +80,20 @@ function installHardBidLeadTrigger() {
     .timeBased()
     .everyMinutes(5)
     .create();
+}
+
+function assertHardBidBusinessAccount_() {
+  const effectiveAccount = String(Session.getEffectiveUser().getEmail() || '')
+    .trim()
+    .toLowerCase();
+
+  if (effectiveAccount !== EXPECTED_EXECUTION_ACCOUNT) {
+    throw new Error(
+      `Wrong execution account. Expected ${EXPECTED_EXECUTION_ACCOUNT}; ` +
+      `received ${effectiveAccount || 'an unavailable account identity'}. ` +
+      'Open this Apps Script project with the HardBid business account before running or installing its trigger.'
+    );
+  }
 }
 
 function getProcessedMessageIds_(sheet) {
