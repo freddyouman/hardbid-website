@@ -9,6 +9,17 @@ This is the no-extra-subscription automation path for HardBid leads.
 3. The script parses the email body.
 4. The script appends one row to the live HardBid Lead Tracker.
 5. The script stores the Gmail message ID in hidden column `S` to prevent duplicate rows.
+6. The script fails visibly unless the effective execution account is
+   `freddy@hardbidconsulting.com`.
+
+The processed Gmail label is for operator visibility only. It is deliberately
+not part of the search exclusion because Gmail groups repeated Netlify
+notification subjects into one thread. The immutable Gmail message ID in the
+Sheet is the deduplication control.
+
+Each message inside a matching thread is independently checked for the exact
+Netlify sender and notification subject. Replies or unrelated messages in the
+same conversation cannot create lead rows.
 
 Live tracker:
 
@@ -40,6 +51,11 @@ Verified setup:
 6. Run `processHardBidNetlifyEmails` once and approve permissions.
 7. Confirm the test Netlify emails appear as rows in the tracker.
 8. Run `installHardBidLeadTrigger` once to check every 5 minutes.
+
+If the script reports `Wrong execution account`, switch to
+`freddy@hardbidconsulting.com`. Do not install the trigger under a personal
+Gmail account; installable triggers read the mailbox of the account that
+created them.
 
 ## Before Turning On
 

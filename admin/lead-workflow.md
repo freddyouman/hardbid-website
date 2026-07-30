@@ -10,9 +10,10 @@ https://docs.google.com/spreadsheets/d/1IzThC7hQh4YnoBK16lFeFrwHq9lHZ6CvEo2rg5YH
 
 1. Check `plans@hardbidconsulting.com` for the Netlify notification.
 2. Open the Netlify submission link if the email includes one.
-3. Confirm the `Document Link` value in the Lead Tracker. It may contain an Uploadcare CDN URL, a folder/plan-room link, or a legacy Netlify small-file upload link.
-4. Mark `lead_status` as `New`.
-5. Set `priority`:
+3. Confirm the `Document Link` value in the Lead Tracker. It may contain an authorized client folder/plan-room link or a legacy submission link. A document link is optional at first contact.
+4. If a small supporting file was attached through Netlify, treat it as intake-only material. Do not use the website form for a large plan set.
+5. Mark `lead_status` as `New`.
+6. Set `priority`:
    - `High`: bid due in 7 days or less, large project, or clear urgent ask.
    - `Medium`: active bid with enough time to review.
    - `Low`: incomplete information, exploratory inquiry, or no deadline.
@@ -26,13 +27,15 @@ Suggested first-reply structure:
 ```text
 Hi [Name],
 
-Thank you for sending the project information. I received the intake and will review the documents/link you shared.
+Thank you for sending the project information. I received the intake and will review it within one business day.
 
-Before I start, please confirm:
+If not already included, please confirm:
 - Bid due date:
 - Trade/scope you want reviewed:
 - Any addenda or alternates that must be included:
 - Any specific concerns you want checked first:
+
+If a large document set is needed, I will provide the restricted project-folder instructions or use your approved plan-room link after we confirm the scope.
 
 HardBid provides contractor review and bid-support notes only. Final bid decisions remain with your team.
 
@@ -69,3 +72,13 @@ Good first-stage automation:
 4. Script stores the Gmail message ID in hidden column `S` to prevent duplicates.
 5. Optional later: create a follow-up calendar reminder.
 6. Optional later: add a CRM only after the sales process is proven.
+
+## Large-Document Transfer
+
+The website does not depend on Uploadcare. For large or sensitive plan sets:
+
+1. Qualify the inquiry before requesting the full document set.
+2. Prefer the client's authorized plan-room or controlled folder link when available.
+3. Otherwise create a project-specific restricted folder owned by the HardBid business Google Workspace account, not a personal Drive.
+4. Grant access only to the required people and confirm permissions before documents are added.
+5. Keep the future Azure Blob intake path reserved for the HardBid platform runtime, including expiring access, quarantine, and malware scanning.

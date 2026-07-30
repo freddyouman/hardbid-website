@@ -1,158 +1,196 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Upload Plans | HardBid Consulting</title>
-<meta name="description" content="Upload plans, specs, and bid information to request a HardBid Consulting bid review." />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@uploadcare/file-uploader@v1/web/uc-file-uploader-regular.min.css" />
-<style>
-:root{--navy:#05080F;--panel:#0E1626;--panel2:rgba(14,22,38,.82);--line:#1A2436;--line2:#2A3854;--ink:#EAF0F7;--ink2:#AEB7C8;--gold:#E7A739;--gold2:#F3C266;--green:#6FBF8B;--fd:'Space Grotesk',sans-serif;--fb:'Inter',sans-serif}
-*{box-sizing:border-box;margin:0;padding:0}body{min-height:100vh;background:var(--navy);color:var(--ink);font-family:var(--fb);line-height:1.6}body:before{content:"";position:fixed;inset:0;z-index:-2;background:url('assets/bg-hero.jpg?v=3') center/cover no-repeat;filter:brightness(.72) saturate(1.05)}body:after{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(900px 520px at 50% 0%,rgba(231,167,57,.16),transparent 62%),linear-gradient(180deg,rgba(5,8,15,.56),rgba(5,8,15,.94))}
-a{color:inherit;text-decoration:none}.wrap{max-width:1180px;margin:0 auto;padding:26px 24px 56px}.top{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:34px}.brand{display:flex;align-items:center;gap:14px}.brand img{height:54px;width:auto;border-radius:10px}.brand span{font-family:var(--fd);font-weight:700;letter-spacing:1.8px}.brand .g{color:var(--gold)}.back{font-family:var(--fd);font-weight:600;color:var(--ink2);border:1px solid var(--line2);border-radius:10px;padding:10px 16px;background:rgba(5,8,15,.44)}.back:hover{border-color:var(--gold);color:var(--gold)}
-.hero{text-align:center;margin:18px auto 34px;max-width:860px}.hero .lion{height:118px;width:auto;margin:0 auto 10px;display:block;-webkit-mask-image:radial-gradient(ellipse closest-side at center,#000 62%,transparent 96%);mask-image:radial-gradient(ellipse closest-side at center,#000 62%,transparent 96%)}.title-img{width:min(680px,100%);height:auto;display:block;margin:0 auto 12px;filter:drop-shadow(0 6px 24px rgba(0,0,0,.65))}.eyebrow{font-family:var(--fd);font-weight:600;letter-spacing:3px;text-transform:uppercase;font-size:.76rem;color:var(--gold);margin-bottom:10px}.hero h1{font-family:var(--fd);font-size:clamp(2rem,5.2vw,4.2rem);line-height:1.05;margin-bottom:14px}.hero h1 span{color:var(--gold)}.hero p{color:var(--ink2);font-size:1.06rem;max-width:720px;margin:0 auto}
-.grid{display:grid;grid-template-columns:.78fr 1.22fr;gap:24px;align-items:start}.panel{background:var(--panel2);border:1px solid var(--line);border-radius:16px;box-shadow:0 24px 70px rgba(0,0,0,.45)}.steps{padding:26px}.steps h2,.form-card h2{font-family:var(--fd);font-size:1.35rem;margin-bottom:12px}.steps p{color:var(--ink2);font-size:.94rem;margin-bottom:18px}.step{display:flex;gap:12px;padding:14px 0;border-top:1px solid var(--line)}.num{flex:0 0 auto;width:30px;height:30px;border-radius:999px;background:linear-gradient(145deg,var(--gold2),var(--gold));color:#1A1206;display:grid;place-items:center;font-family:var(--fd);font-weight:700}.step b{font-family:var(--fd)}.step small{display:block;color:var(--ink2);font-size:.82rem;margin-top:2px}.legal{margin-top:18px;padding:14px;border:1px solid rgba(231,167,57,.28);border-radius:12px;background:rgba(231,167,57,.08);font-size:.82rem;color:#D8DEEA}
-.form-card{padding:30px}.form-card .intro{color:var(--ink2);margin-bottom:20px}.form{display:grid;gap:16px}.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}.field label{display:block;font-family:var(--fd);font-weight:600;font-size:.88rem;margin-bottom:7px}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line2);border-radius:10px;background:rgba(5,8,15,.64);color:var(--ink);font:inherit;padding:13px 14px}.field input::placeholder,.field textarea::placeholder{color:#69758A}.field textarea{min-height:116px;resize:vertical}.field input[type=file]{padding:12px;background:rgba(5,8,15,.5)}.uploadcare-box{border:1px solid var(--line2);border-radius:12px;background:rgba(5,8,15,.42);padding:14px}.uploadcare-box uc-file-uploader-regular{display:block;--uc-primary-oklch-dark:72% .13 83;--uc-primary-oklch-light:72% .13 83;--uc-background-dark:#0B1220;--uc-foreground-dark:#EAF0F7;--uc-border-radius:10px}.full{grid-column:1/-1}.hidden{display:none}.form-error{display:none;border:1px solid rgba(231,167,57,.42);border-radius:10px;background:rgba(231,167,57,.1);color:#F5D89A;padding:11px 13px;font-size:.88rem}.form-error.show{display:block}.check{display:flex;gap:10px;align-items:flex-start;color:var(--ink2);font-size:.82rem}.check input{width:18px;height:18px;margin-top:3px;accent-color:var(--gold);flex:0 0 auto}.check a,.fine a{color:var(--gold2);text-decoration:underline;text-underline-offset:3px}.submit{border:0;border-radius:10px;background:linear-gradient(145deg,var(--gold2),var(--gold));color:#1A1206;font-family:var(--fd);font-weight:700;font-size:1rem;padding:15px 22px;cursor:pointer;box-shadow:0 10px 30px rgba(231,167,57,.26)}.submit:hover{filter:brightness(1.04)}.fine{color:var(--ink2);font-size:.78rem;margin-top:4px}.required{color:var(--gold)}
-@media(max-width:880px){.grid{grid-template-columns:1fr}.top{align-items:flex-start}.row{grid-template-columns:1fr}.hero .lion{height:92px}.form-card,.steps{padding:22px}}@media(max-width:560px){.wrap{padding:18px 16px 42px}.top{flex-direction:column}.back{width:100%;text-align:center}.brand img{height:46px}.brand span{font-size:.9rem;letter-spacing:1px}.hero h1{font-size:2.2rem}.hero p{font-size:.98rem}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Start a Project Review | HardBid Consulting</title>
+  <meta name="description" content="Tell HardBid Consulting about your construction estimate, bid, takeoff, or model-coordination need. Plans are optional at first contact.">
+  <link rel="canonical" href="https://hardbidconsulting.com/upload-plans.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Start a Project Review | HardBid Consulting">
+  <meta property="og:description" content="Start with the project, deadline, and decision you need. Plans can follow through a controlled transfer after review.">
+  <meta property="og:url" content="https://hardbidconsulting.com/upload-plans.html">
+  <meta property="og:image" content="https://hardbidconsulting.com/assets/bg-intake-tech-v2.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=6">
+  <link rel="icon" href="assets/hardbid-lion-favicon-32.png?v=5" type="image/png">
 </head>
-<body>
-<main class="wrap">
-  <header class="top">
-    <a class="brand" href="/"><img src="assets/lion.png" alt="HardBid lion logo" /><span>HARD<span class="g">BID</span> CONSULTING</span></a>
-    <a class="back" href="/">Back to Website</a>
+<body data-page="upload">
+  <header class="site-header" data-header>
+    <div class="shell nav-wrap">
+      <a class="brand" href="index.html" aria-label="HardBid Consulting home">
+        <img src="assets/hardbid-lion-header-256.png?v=5" alt="" width="64" height="64">
+        <span class="brand-copy"><b>HardBid</b><small>Consulting</small></span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation" data-menu-toggle>
+        <span></span><span></span><span></span><span class="sr-only">Open navigation</span>
+      </button>
+      <nav id="site-nav" class="site-nav" aria-label="Primary navigation" data-menu>
+        <a href="services.html">Services</a>
+        <a href="deliverables.html">Deliverables</a>
+        <a href="experience.html">Experience</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html">About</a>
+        <a class="nav-cta" aria-current="page" href="upload-plans.html">Start a Project</a>
+      </nav>
+    </div>
   </header>
-  <section class="hero">
-    <img class="lion" src="assets/lion.png" alt="HardBid Consulting lion emblem" />
-    <img class="title-img" src="assets/title.png?v=7" alt="HardBid Consulting" />
-    <p class="eyebrow">Contractor Bid Review Intake</p>
-    <h1>Upload Plans for a <span>Free Bid Review</span></h1>
-    <p>Send your plans, specs, addenda, scope notes, and bid deadline. HardBid will review the information you provide and follow up with practical next steps.</p>
-  </section>
-  <section class="grid">
-    <aside class="panel steps">
-      <h2>What Happens Next</h2>
-      <p>This intake is built to capture the information needed for a clear first review without a long phone call.</p>
-      <div class="step"><div class="num">1</div><div><b>Upload Documents</b><small>Plans, specs, addenda, scopes, notes, or bid forms.</small></div></div>
-      <div class="step"><div class="num">2</div><div><b>HardBid Reviews</b><small>We look for scope clarity, missing information, and bid-support needs.</small></div></div>
-      <div class="step"><div class="num">3</div><div><b>You Get a Follow-Up</b><small>We confirm the useful next step, timeline, and any paid review scope before work begins.</small></div></div>
-      <div class="legal"><b>Important:</b> Do not upload confidential or restricted documents unless you are authorized to share them. This review does not guarantee project award, bid accuracy, profit, pricing outcome, or contract result.</div>
-    </aside>
-    <section class="panel form-card">
-      <h2>Project Intake Form</h2>
-      <p class="intro">Fields marked with <span class="required">*</span> help us respond quickly and understand the bid deadline.</p>
-      <form class="form" name="plan-upload" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" enctype="multipart/form-data" action="/thank-you.html">
-        <input type="hidden" name="form-name" value="plan-upload" />
-        <p class="hidden"><label>Do not fill this out: <input name="bot-field" /></label></p>
-        <p class="form-error full" id="document-error">Please upload documents with the secure uploader, paste a folder/file link, or attach one small file under 7 MB.</p>
-        <div class="row">
-          <div class="field"><label for="name">Name <span class="required">*</span></label><input id="name" name="name" type="text" autocomplete="name" required placeholder="Your name" /></div>
-          <div class="field"><label for="email">Email <span class="required">*</span></label><input id="email" name="email" type="email" autocomplete="email" required placeholder="you@company.com" /></div>
-        </div>
-        <div class="row">
-          <div class="field"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="Best callback number" /></div>
-          <div class="field"><label for="company">Company</label><input id="company" name="company" type="text" autocomplete="organization" placeholder="Company name" /></div>
-        </div>
-        <div class="row">
-          <div class="field"><label for="project-type">Project Type</label><select id="project-type" name="project_type"><option value="">Select one</option><option>Water / Wastewater</option><option>Industrial</option><option>Mechanical</option><option>Public Works</option><option>Commercial</option><option>Other</option></select></div>
-          <div class="field"><label for="bid-date">Bid Due Date</label><input id="bid-date" name="bid_due_date" type="date" /></div>
-        </div>
-        <div class="row">
-          <div class="field"><label for="project-size">Project Size</label><select id="project-size" name="project_size"><option value="">Select one</option><option>Under $5M</option><option>$5M - $25M</option><option>$25M - $100M</option><option>Over $100M</option><option>Not sure yet</option></select></div>
-          <div class="field"><label for="service">Needed Support</label><select id="service" name="needed_support"><option value="">Select one</option><option>Bid package review</option><option>Take-off summary</option><option>Scope gap analysis</option><option>Estimating support</option><option>RFI / clarification support</option><option>Not sure yet</option></select></div>
-        </div>
-        <div class="field full">
-          <label>Upload Plans / Specs / Notes</label>
-          <div class="uploadcare-box">
-            <uc-config ctx-name="hardbid_uploads" pubkey="06ed15f29f1df80a6875" multiple multiple-max="10" group-output source-list="local,url,dropbox,gdrive,onedrive,box" accept=".pdf,.zip,.dwg,.dxf,.xlsx,.xls,.csv,.doc,.docx,.png,.jpg,.jpeg" max-local-file-size-bytes="1073741824" store="auto"></uc-config>
-            <uc-file-uploader-regular ctx-name="hardbid_uploads"><uc-form-input ctx-name="hardbid_uploads"></uc-form-input></uc-file-uploader-regular>
-          </div>
-          <input id="uploadcare-links" name="uploadcare_file_links" type="hidden" />
-          <p class="fine">Best for large PDFs, ZIP files, full plan sets, or files from Google Drive, Dropbox, OneDrive, Box, or a direct link.</p>
-        </div>
-        <div class="field full"><label for="document-link">Folder / Plan Room Link</label><input id="document-link" name="document_link" type="url" placeholder="Google Drive, Dropbox, OneDrive, Procore, PlanGrid, BuildingConnected, or plan room link" /><p class="fine">Paste a folder, file, or plan-room location if you already have one.</p></div>
-        <div class="field full"><label for="documents">Small Backup Upload</label><input id="documents" name="documents" type="file" accept=".pdf,.zip,.dwg,.dxf,.xlsx,.xls,.csv,.doc,.docx,.png,.jpg,.jpeg" /><p class="fine">Backup only: one small file under 7 MB. Use the secure uploader above for real plan sets.</p></div>
-        <div class="field full"><label for="message">Project Notes</label><textarea id="message" name="message" placeholder="Tell us the deadline, scope, trade, concerns, alternates, addenda, or what you want reviewed first."></textarea></div>
-        <label class="check full"><input type="checkbox" name="authorized_consent" required /><span>I confirm I am authorized to share these documents and agree to the <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a> and <a href="terms.html" target="_blank" rel="noopener">Terms</a>.</span></label>
-        <button class="submit full" type="submit">Submit Plans for Review</button>
-        <p class="fine full">HardBid provides contractor review support only; final bid decisions remain your responsibility. Questions? <a href="mailto:info@hardbidconsulting.com">info@hardbidconsulting.com</a></p>
-      </form>
+
+  <main>
+    <section class="page-hero intake-hero">
+      <div class="shell page-hero-copy">
+        <p class="eyebrow">Project intake</p>
+        <h1>Start with the project, deadline, and decision you need.</h1>
+        <p class="lead">Construction documents are helpful, but they are not required for your first inquiry. Tell us what you are pursuing and we will confirm scope, timing, and the safest next step for transferring plans.</p>
+      </div>
     </section>
-  </section>
-</main>
-<script type="module">
-import * as UC from 'https://cdn.jsdelivr.net/npm/@uploadcare/file-uploader@v1/web/file-uploader.min.js';
-UC.defineComponents(UC);
-</script>
-<script>
-const form = document.querySelector('form[name="plan-upload"]');
-const documentLink = document.getElementById('document-link');
-const documents = document.getElementById('documents');
-const documentError = document.getElementById('document-error');
-const uploadcareLinks = document.getElementById('uploadcare-links');
-const maxDirectUploadBytes = 7 * 1024 * 1024;
 
-function getUploadcareValues() {
-  const formData = new FormData(form);
-  return formData
-    .getAll('hardbid_uploads')
-    .concat(formData.getAll('hardbid_uploads[]'))
-    .map((value) => String(value || '').trim())
-    .filter(Boolean);
-}
+    <section class="section">
+      <div class="shell intake-layout">
+        <div>
+          <p class="eyebrow">Qualification first</p>
+          <h2>A faster, controlled way to begin.</h2>
+          <p>Submit the essentials below. HardBid normally responds within one business day to confirm fit, identify missing information, and arrange a controlled document transfer when large or sensitive files are needed.</p>
 
-function syncUploadcareLinks() {
-  const values = getUploadcareValues();
-  uploadcareLinks.value = values.join('\n');
-  return values;
-}
+          <div class="legal-note intake-transfer-note">
+            <h3>Large plan sets</h3>
+            <p>Do not force a large drawing set through this form. Provide an authorized link if one already exists, or submit the inquiry without documents. After qualification, HardBid can arrange a restricted business Google Drive project folder or use your approved plan-room link.</p>
+          </div>
 
-function showDocumentError(message) {
-  documentError.textContent = message;
-  documentError.classList.add('show');
-  documentError.scrollIntoView({ block: 'center', behavior: 'smooth' });
-}
+          <ul class="check-list">
+            <li>No new storage subscription is required for initial launch.</li>
+            <li>Documents remain optional until the project is qualified.</li>
+            <li>Small supporting files may be attached directly, up to 7 MB.</li>
+          </ul>
+        </div>
 
-documents.addEventListener('change', () => {
-  const file = documents.files[0];
-  if (!file) {
-    documentError.classList.remove('show');
-    return;
-  }
+        <div class="form-card">
+          <form name="plan-upload" method="POST" action="/thank-you.html" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" id="project-intake-form">
+            <input type="hidden" name="form-name" value="plan-upload">
+            <p class="hidden">
+              <label>Do not fill this out: <input name="bot-field"></label>
+            </p>
 
-  if (file.size > maxDirectUploadBytes) {
-    const sizeMb = (file.size / 1024 / 1024).toFixed(1);
-    documents.value = '';
-    showDocumentError(`That file is ${sizeMb} MB. Please use the secure uploader above for large files, or paste a Google Drive, Dropbox, OneDrive, Procore, PlanGrid, BuildingConnected, or plan-room link.`);
-  } else {
-    documentError.classList.remove('show');
-  }
-});
+            <div class="form-grid">
+              <label>
+                Name <span aria-hidden="true">*</span>
+                <input type="text" name="name" autocomplete="name" required>
+              </label>
+              <label>
+                Business email <span aria-hidden="true">*</span>
+                <input type="email" name="email" autocomplete="email" required>
+              </label>
+              <label>
+                Phone
+                <input type="tel" name="phone" autocomplete="tel">
+              </label>
+              <label>
+                Company <span aria-hidden="true">*</span>
+                <input type="text" name="company" autocomplete="organization" required>
+              </label>
+              <label class="full">
+                Project name <span aria-hidden="true">*</span>
+                <input type="text" name="project_name" required>
+              </label>
+              <label>
+                Project type <span aria-hidden="true">*</span>
+                <select name="project_type" required>
+                  <option value="">Select one</option>
+                  <option>Water / wastewater</option>
+                  <option>Heavy civil / infrastructure</option>
+                  <option>Commercial / institutional</option>
+                  <option>Industrial / process</option>
+                  <option>Other</option>
+                </select>
+              </label>
+              <label>
+                Approximate construction value
+                <select name="project_size">
+                  <option value="">Not sure yet</option>
+                  <option>Under $5 million</option>
+                  <option>$5 million to $25 million</option>
+                  <option>$25 million to $100 million</option>
+                  <option>Over $100 million</option>
+                </select>
+              </label>
+              <label>
+                Bid or decision date
+                <input type="date" name="bid_due_date">
+              </label>
+              <label>
+                Support needed <span aria-hidden="true">*</span>
+                <select name="needed_support" required>
+                  <option value="">Select one</option>
+                  <option>Estimate and takeoff review</option>
+                  <option>Bid strategy and scope review</option>
+                  <option>Constructability / model coordination</option>
+                  <option>Post-bid clarification support</option>
+                  <option>Not sure — help me define it</option>
+                </select>
+              </label>
+              <label class="full">
+                Authorized document or plan-room link
+                <input type="url" name="document_link" placeholder="https://">
+                <span class="field-help">Optional. Use a link you are authorized to share.</span>
+              </label>
+              <label class="full">
+                Small supporting file
+                <input type="file" name="small_attachment" id="small-attachment" accept=".pdf,.doc,.docx,.xls,.xlsx,.csv,.jpg,.jpeg,.png,.zip">
+                <span class="field-help">Optional, maximum 7 MB. Submit first if your files are larger.</span>
+              </label>
+              <label class="full">
+                Project notes
+                <textarea name="message" rows="6" placeholder="Describe the scope, current estimate status, trades involved, known risks, and the decision you need help making."></textarea>
+              </label>
+            </div>
 
-form.addEventListener('submit', (event) => {
-  const uploadcareValues = syncUploadcareLinks();
-  const hasLink = documentLink.value.trim().length > 0;
-  const hasFile = documents.files.length > 0;
-  const hasUploadcareFile = uploadcareValues.length > 0;
+            <label class="consent-row">
+              <input type="checkbox" name="authorized_to_share" value="yes" required>
+              <span>I confirm that I am authorized to provide this project information and any documents or links submitted with it.</span>
+            </label>
 
-  if (!hasUploadcareFile && !hasLink && !hasFile) {
-    event.preventDefault();
-    showDocumentError('Please upload documents with the secure uploader, paste a folder/file link, or attach one small file under 7 MB.');
-    return;
-  }
+            <p class="form-error" id="form-error" role="alert" aria-live="polite"></p>
+            <button class="button button-primary button-wide" type="submit">Request Project Review</button>
+            <p class="form-note">Submitting this form does not create a client relationship or guarantee availability. We normally reply within one business day.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
 
-  if (hasFile && documents.files[0].size > maxDirectUploadBytes) {
-    event.preventDefault();
-    showDocumentError('This file is too large for the small backup upload. Please use the secure uploader above or paste a Google Drive, Dropbox, OneDrive, Procore, PlanGrid, BuildingConnected, or plan-room link instead.');
-    documents.value = '';
-    return;
-  }
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html"><img src="assets/hardbid-lion-header-256.png?v=5" alt="" width="64" height="64"><span class="brand-copy"><b>HardBid</b><small>Consulting</small></span></a>
+        <p>Founder-led construction bid review and contractor decision support.</p>
+      </div>
+      <div><h3>Explore</h3><div class="footer-links"><a href="services.html">Services</a><a href="deliverables.html">Deliverables</a><a href="pricing.html">Pricing</a></div></div>
+      <div><h3>Contact</h3><div class="footer-links"><a href="mailto:info@hardbidconsulting.com">info@hardbidconsulting.com</a><a href="tel:+13108001167">(310) 800-1167</a><span>Harbor City, California</span></div></div>
+      <div><h3>Legal</h3><div class="footer-links"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div></div>
+    </div>
+    <div class="shell footer-bottom"><span>&copy; 2026 HardBid Consulting</span><span>Clear scope. Controlled assumptions. Better decisions.</span></div>
+  </footer>
 
-  documentError.classList.remove('show');
-});
-</script>
+  <script src="site.js?v=6" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var form = document.getElementById("project-intake-form");
+      var fileInput = document.getElementById("small-attachment");
+      var error = document.getElementById("form-error");
+      var maxBytes = 7 * 1024 * 1024;
+
+      form.addEventListener("submit", function (event) {
+        error.textContent = "";
+        if (fileInput.files.length && fileInput.files[0].size > maxBytes) {
+          event.preventDefault();
+          error.textContent = "That file is larger than 7 MB. Remove it and submit the inquiry first; we will arrange a controlled transfer after review.";
+          fileInput.focus();
+        }
+      });
+    });
+  </script>
 </body>
 </html>

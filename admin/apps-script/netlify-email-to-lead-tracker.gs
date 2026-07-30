@@ -1,24 +1,56 @@
 const SPREADSHEET_ID = '1IzThC7hQh4YnoBK16lFeFrwHq9lHZ6CvEo2rg5YHFCw';
 const LEADS_SHEET_NAME = 'Leads';
 const PROCESSED_LABEL = 'HardBidLeadLogged';
-const SEARCH_QUERY = 'from:formresponses@netlify.com subject:"New HardBid plan upload received" newer_than:30d -label:HardBidLeadLogged';
+const SEARCH_QUERY = 'from:formresponses@netlify.com subject:"New HardBid plan upload received" newer_than:30d';
+const EXPECTED_EXECUTION_ACCOUNT = 'freddy@hardbidconsulting.com';
+const EXPECTED_SENDER = 'formresponses@netlify.com';
+const EXPECTED_SUBJECT = 'New HardBid plan upload received';
 
 const FIELD_LABELS = [
   'Name *',
+  'Name',
+  'name',
+  'Business Email *',
+  'Business Email',
   'Email *',
+  'Email',
+  'email',
   'Phone',
   'Company',
+  'Project Name *',
+  'Project Name',
+  'project_name',
+  'Project Type *',
   'Project Type',
+  'project_type',
+  'Bid or Decision Date',
   'Bid Due Date',
+  'bid_due_date',
+  'Approximate Construction Value',
   'Project Size',
+  'project_size',
+  'Support Needed *',
+  'Support Needed',
   'Needed Support',
+  'needed_support',
+  'Authorized Document or Plan-room Link',
+  'Document Link',
+  'document_link',
+  'Small Supporting File',
+  'Small Attachment',
+  'small_attachment',
   'Uploadcare File Links',
   'Large Plan Set Link',
   'Upload Plans / Specs / Notes',
   'Project Notes',
+  'Message',
+  'message',
+  'Authorized To Share',
 ];
 
 function processHardBidNetlifyEmails() {
+  assertHardBidBusinessAccount_();
+
   const sheet = SpreadsheetApp.openById(SPREADSHEET_ID).getSheetByName(LEADS_SHEET_NAME);
   const processedIds = getProcessedMessageIds_(sheet);
   const label = GmailApp.getUserLabelByName(PROCESSED_LABEL) || GmailApp.createLabel(PROCESSED_LABEL);
@@ -27,6 +59,8 @@ function processHardBidNetlifyEmails() {
 
   threads.forEach((thread) => {
     thread.getMessages().forEach((message) => {
+      if (!isTargetNetlifyMessage_(message)) return;
+
       const messageId = message.getId();
       if (processedIds.has(messageId)) return;
 
@@ -43,7 +77,16 @@ function processHardBidNetlifyEmails() {
   Logger.log(`HardBid leads added: ${added}`);
 }
 
+function isTargetNetlifyMessage_(message) {
+  const sender = String(message.getFrom() || '').toLowerCase();
+  const subject = String(message.getSubject() || '').trim();
+
+  return sender.includes(EXPECTED_SENDER) && subject === EXPECTED_SUBJECT;
+}
+
 function installHardBidLeadTrigger() {
+  assertHardBidBusinessAccount_();
+
   ScriptApp.getProjectTriggers()
     .filter((trigger) => trigger.getHandlerFunction() === 'processHardBidNetlifyEmails')
     .forEach((trigger) => ScriptApp.deleteTrigger(trigger));
@@ -52,6 +95,20 @@ function installHardBidLeadTrigger() {
     .timeBased()
     .everyMinutes(5)
     .create();
+}
+
+function assertHardBidBusinessAccount_() {
+  const effectiveAccount = String(Session.getEffectiveUser().getEmail() || '')
+    .trim()
+    .toLowerCase();
+
+  if (effectiveAccount !== EXPECTED_EXECUTION_ACCOUNT) {
+    throw new Error(
+      `Wrong execution account. Expected ${EXPECTED_EXECUTION_ACCOUNT}; ` +
+      `received ${effectiveAccount || 'an unavailable account identity'}. ` +
+      'Open this Apps Script project with the HardBid business account before running or installing its trigger.'
+    );
+  }
 }
 
 function getProcessedMessageIds_(sheet) {
@@ -64,19 +121,28 @@ function getProcessedMessageIds_(sheet) {
 
 function parseNetlifyBody_(body) {
   return {
-    name: extractField_(body, 'Name *'),
-    email: extractField_(body, 'Email *'),
-    phone: extractField_(body, 'Phone'),
-    company: extractField_(body, 'Company'),
-    projectType: extractField_(body, 'Project Type'),
-    bidDueDate: extractField_(body, 'Bid Due Date'),
-    projectSize: extractField_(body, 'Project Size'),
-    neededSupport: extractField_(body, 'Needed Support'),
+    name: extractAnyField_(body, ['Name *', 'Name', 'name']),
+    email: extractAnyField_(body, ['Business Email *', 'Business Email', 'Email *', 'Email', 'email']),
+    phone: extractAnyField_(body, ['Phone']),
+    company: extractAnyField_(body, ['Company']),
+    projectName: extractAnyField_(body, ['Project Name *', 'Project Name', 'project_name']),
+    projectType: extractAnyField_(body, ['Project Type *', 'Project Type', 'project_type']),
+    bidDueDate: extractAnyField_(body, ['Bid or Decision Date', 'Bid Due Date', 'bid_due_date']),
+    projectSize: extractAnyField_(body, ['Approximate Construction Value', 'Project Size', 'project_size']),
+    neededSupport: extractAnyField_(body, ['Support Needed *', 'Support Needed', 'Needed Support', 'needed_support']),
     uploadcareFileLinks: extractField_(body, 'Uploadcare File Links'),
-    documentLink: extractField_(body, 'Large Plan Set Link'),
-    uploadedFiles: extractField_(body, 'Upload Plans / Specs / Notes'),
-    projectNotes: extractField_(body, 'Project Notes'),
+    documentLink: extractAnyField_(body, ['Authorized Document or Plan-room Link', 'Document Link', 'Large Plan Set Link', 'document_link']),
+    uploadedFiles: extractAnyField_(body, ['Small Supporting File', 'Small Attachment', 'Upload Plans / Specs / Notes', 'small_attachment']),
+    projectNotes: extractAnyField_(body, ['Project Notes', 'Message', 'message']),
   };
+}
+
+function extractAnyField_(body, labels) {
+  for (const label of labels) {
+    const value = extractField_(body, label);
+    if (value) return value;
+  }
+  return '';
 }
 
 function extractField_(body, label) {
@@ -117,7 +183,7 @@ function buildLeadRow_(message, submission, messageId) {
     submission.email,
     submission.phone,
     submission.company,
-    '',
+    submission.projectName,
     submission.projectType,
     bidDueDate,
     submission.projectSize,
