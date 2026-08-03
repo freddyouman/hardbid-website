@@ -58,6 +58,85 @@
   force = true
 
 [[redirects]]
-  from = "/*"
+  from = "/pricing.html"
   to = "/"
   status = 302
+  force = true
+
+[[redirects]]
+  from = "/pricing"
+  to = "/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/services.html"
+  to = "/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/services"
+  to = "/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/about.html"
+  to = "/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/about"
+  to = "/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/experience.html"
+  to = "/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/experience"
+  to = "/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/deliverables.html"
+  to = "/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/deliverables"
+  to = "/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/model-coordination.html"
+  to = "/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/model-coordination"
+  to = "/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/contact.html"
+  to = "/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/contact"
+  to = "/"
+  status = 302
+  force = true
