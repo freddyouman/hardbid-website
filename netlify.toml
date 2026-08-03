@@ -7,3 +7,57 @@
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Robots-Tag = "noindex, nofollow, noarchive"
+
+[[redirects]]
+  from = "/upload-plans.html"
+  to = "/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/upload-plans"
+  to = "/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/thank-you.html"
+  to = "/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/thank-you"
+  to = "/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/privacy.html"
+  to = "/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/privacy"
+  to = "/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/terms.html"
+  to = "/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/terms"
+  to = "/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/"
+  status = 302
